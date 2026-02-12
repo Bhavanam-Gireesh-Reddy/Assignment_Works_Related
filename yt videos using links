@@ -1,0 +1,26 @@
+import yt_dlp
+
+# List of YouTube video links
+video_links = [
+    "https://www.youtube.com/watch?v=tmLUEQUd6pQ&t=34s",
+    "https://www.youtube.com/watch?v=MbOxq9zzajo",
+    "https://www.youtube.com/watch?v=Li2HwZS9Ygs"
+]
+
+# Folder where videos will be saved
+SAVE_PATH = "C:/Users/hp/Downloads/CCTV"  # Change this to your desired folder
+
+# yt-dlp options
+ydl_opts = {
+    'format': 'bestvideo+bestaudio/best',  # Download best video + audio
+    'outtmpl': f'{SAVE_PATH}/%(title)s.%(ext)s',  # Custom output template
+    'merge_output_format': 'mp4',  # Ensure output format is MP4
+    'noplaylist': True,  # Download only the single video, not playlists
+    'quiet': False  # Show download progress
+}
+
+# Download videos
+with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    ydl.download(video_links)
+
+print("All videos downloaded successfully!")
